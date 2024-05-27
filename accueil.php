@@ -1,3 +1,16 @@
+<?php
+require_once "database.php";
+$sections= get_formation();
+
+
+
+
+
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,14 +22,20 @@
 <body>
     <h2>Formulaire de contact</h2>
 
-<form action="confirmation.php" method="post">
-   
-    <button type="submit">Valider</button>
-    <p><label for="Section">Nom de section *</label><select name="Section">
-        <option disabled selected>- Choisir une Section -</option>
-        
+    <form action="trajet.php" method="get">
+        <label for="section">Nom de section</label>
+        <select name="section" id="section">
+            <option>- Choisir une Section -</option>
+            <!-- cette boucle sert a afficher les données prises de la base de donnée -->
+            <?php
+                foreach($sections as $section){ ?>
+                <option value="<?= $section['id'] ?>"><?= $section['nomSection'] ?></option>
+            <?php } ?>
+        </select>
 
-        
-</form>
+        <input type="submit" value="Valider"></input> 
+    </form>
 </body>
 </html>
+
+
